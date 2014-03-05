@@ -30,4 +30,9 @@ public class BallScript : MonoBehaviour {
             rigidbody2D.velocity /= lCorrectionVelocity;
         }
 	}
+
+    void  OnCollisionEnter2D(Collision2D other) 
+    {
+        this.audio.Play();
+    }
 }
