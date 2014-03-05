@@ -18,7 +18,7 @@ public class SpawnerScript : MonoBehaviour
             this.m_Orientation = Orientation.Right;
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
 
