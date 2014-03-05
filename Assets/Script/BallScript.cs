@@ -6,17 +6,17 @@ public class BallScript : MonoBehaviour {
     public float m_maxVelocity = 100;
     [Range(15.0f, 50.0f)]
     public float m_minVelocity = 15;
-	
-	void Start () 
+
+    void Awake()
     {
         this.rigidbody2D.velocity = new Vector2(m_minVelocity, m_minVelocity);
-	}
-	
+    }
 
 	void Update () 
     {
         float lCurrentVelocity = this.rigidbody2D.velocity.magnitude;
         float lCorrectionVelocity;
+
         //Checking if the current Velocity is between m_maxVelocity and m_minVelocity
         if (lCurrentVelocity > m_maxVelocity)
         {
@@ -33,6 +33,6 @@ public class BallScript : MonoBehaviour {
 
     void  OnCollisionEnter2D(Collision2D other) 
     {
-        this.audio.Play();
+      //  this.audio.Play();
     }
 }
