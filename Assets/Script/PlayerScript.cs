@@ -4,9 +4,12 @@ using System.Collections;
 public class PlayerScript : MonoBehaviour {
 
     private int m_Score = 0;
-	
-	void Update () 
+    public float m_Speed = 20.0f;
+
+	void FixedUpdate () 
     {
+        float lInput = Input.GetAxis("Vertical");
+        this.rigidbody2D.velocity = new Vector2(0, lInput * this.m_Speed);
 	}
 
     public void AddPoint()
