@@ -3,20 +3,22 @@ using System.Collections;
 
 public class PlayerScript : MonoBehaviour {
 
-    private int score = 0;
+    private int m_Score = 0;
 	// Use this for initialization
-	void Start () {
+	void Start () 
+    {
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+    {
+	    Debug.Log("Score" + this.m_Score);
 	}
 
     public void AddPoint()
     {
-        ++score;
+        ++this.m_Score;
     }
 
 }
