@@ -15,6 +15,9 @@ public class PlayerScript : MonoBehaviour {
     public void AddPoint()
     {
         ++this.m_Score;
+        if (this.m_Score == 10)
+            MainScript.m_Instance.EndGame();
+
     }
 
     public int getScore()
