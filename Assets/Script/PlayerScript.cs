@@ -32,12 +32,14 @@ public class PlayerScript : MonoBehaviour {
         {
             MainScript.m_KeyPressedPlayerRightUp -= this.MoveUp;
             MainScript.m_KeyPressedPlayerRightDown -= this.MoveDown;
+            MainScript.m_StopPlayer -= this.StopMovement;
         }
 
         if (this.m_Id == 2)
         {
             MainScript.m_KeyPressedPlayerLeftUp -= this.MoveUp;
             MainScript.m_KeyPressedPlayerLeftDown -= this.MoveDown;
+            MainScript.m_StopPlayer -= this.StopMovement;
         }
     }
 
