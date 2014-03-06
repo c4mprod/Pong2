@@ -65,6 +65,7 @@ public class MainScript : MonoBehaviour
             this.m_Released = true;
             this.m_LeftPlayerUp = false;
         }
+
         if (Input.GetKey(KeyCode.S))
             this.m_LeftPlayerDown = true;
 
@@ -91,69 +92,64 @@ public class MainScript : MonoBehaviour
             this.m_Released = true;
             this.m_RightPlayerDown = false;
         }
-
-
     }
 
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Z))
+        if (this.m_LeftPlayerUp)
         {
             if (m_KeyPressedPlayerLeftUp != null)
                 m_KeyPressedPlayerLeftUp();
             this.m_LeftPlayerUp = false;
         }
 
-        if (Input.GetKeyUp(KeyCode.Z))
+        if (this.m_Released)
         {
             if (m_StopPlayer != null)
                 m_StopPlayer();
             this.m_Released = false;
-            this.m_LeftPlayerUp = false;
         }
 
-        if (Input.GetKey(KeyCode.S))
+        if (this.m_LeftPlayerDown)
         {
             if (m_KeyPressedPlayerLeftDown != null)
                 m_KeyPressedPlayerLeftDown();
             this.m_LeftPlayerDown = false;
         }
 
-        if (Input.GetKeyUp(KeyCode.S))
+        if (this.m_Released)
         {
             if (m_StopPlayer != null)
                 m_StopPlayer();
             this.m_Released = false;
-            this.m_LeftPlayerDown = false;
         }
 
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (this.m_RightPlayerUp)
         {
             if (m_KeyPressedPlayerRightUp != null)
                 m_KeyPressedPlayerRightUp();
             this.m_RightPlayerUp = false;
         }
 
-        if (Input.GetKeyUp(KeyCode.UpArrow))
+        if (this.m_Released)
         {
             if (m_StopPlayer != null)
                 m_StopPlayer();
             this.m_Released = false;
-            this.m_RightPlayerUp = false;
         }
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (this.m_RightPlayerDown)
         {
             if (m_KeyPressedPlayerRightDown != null)
                 m_KeyPressedPlayerRightDown();
             this.m_RightPlayerDown = false;
         }
-        if (Input.GetKeyUp(KeyCode.DownArrow))
+
+        if (this.m_Released)
         {
             if (m_StopPlayer != null)
                 m_StopPlayer();
             this.m_Released = false;
-            this.m_RightPlayerDown = false;
         }
     }
 }

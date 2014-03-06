@@ -5,7 +5,7 @@ public class ScoringBorderScript : MonoBehaviour
 {
 
     public PlayerScript m_Player;
-    public GameObject m_Spawner;
+    public SpawnerScript m_Spawner;
 
     void Start()
     {
@@ -22,7 +22,7 @@ public class ScoringBorderScript : MonoBehaviour
         if (other.gameObject.tag == "Ball")
         {
             this.m_Player.AddPoint();
-            this.m_Spawner.GetComponent<SpawnerScript>().Spawn();
+            this.m_Spawner.Spawn();
         }
     }
 }
