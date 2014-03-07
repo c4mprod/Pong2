@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MainScript : MonoBehaviour
 {
 
     public static MainScript m_Instance { get; private set; }
+
+
+    public List<GameObject> m_BallList;
+    private float m_TimeSinceLastBonusBall = 0;
+
 
     private bool m_EndGame = false;
 
@@ -92,6 +98,20 @@ public class MainScript : MonoBehaviour
             this.m_Released = true;
             this.m_RightPlayerDown = false;
         }
+
+        this.m_TimeSinceLastBonusBall += Time.deltaTime;
+
+        if (this.m_TimeSinceLastBonusBall >= 5.0)
+        {
+            m_TimeSinceLastBonusBall = 0;
+
+            GameObject lInstance;
+            int lRandomBonusBall;
+
+            lRandomBonusBall = Random.Range(0, this.m_BallList.Count);
+            lInstance = (GameObject)Instantiate(this.m_BallList[lRandomBonusBall], new Vector3(Random.Range(-35, 35), Random.Range(-15, 24), 1), Quaternion.Euler(new Vector3(0, 0, 0)));
+        }
+
     }
 
     void FixedUpdate()

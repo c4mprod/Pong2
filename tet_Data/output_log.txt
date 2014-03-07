@@ -11,13 +11,13 @@ Platform assembly: C:\Users\Vincent\Documents\Ponkemon\tet_Data\Managed\UnityEng
 Loading C:\Users\Vincent\Documents\Ponkemon\tet_Data\Managed\UnityEngine.dll into Unity Child Domain
 Platform assembly: C:\Users\Vincent\Documents\Ponkemon\tet_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading C:\Users\Vincent\Documents\Ponkemon\tet_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.059 seconds
-desktop: 1920x1080 60Hz; virtual: 3840x1080 at -1920,0
+- Completed reload, in  0.082 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-UnloadTime: 0.229649 ms
+UnloadTime: 13.935069 ms
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
 Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 136.
-Total: 0.437061 ms (FindLiveObjects: 0.008980 ms CreateObjectMapping: 0.005559 ms MarkObjects: 0.076549 ms  DeleteObjects: 0.002993 ms)
+Total: 0.724443 ms (FindLiveObjects: 0.009408 ms CreateObjectMapping: 0.006414 ms MarkObjects: 0.388308 ms  DeleteObjects: 0.005987 ms)
 
