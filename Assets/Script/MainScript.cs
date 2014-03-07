@@ -109,7 +109,7 @@ public class MainScript : MonoBehaviour
             int lRandomBonusBall;
 
             lRandomBonusBall = Random.Range(0, this.m_BallList.Count);
-            lInstance = (GameObject)Instantiate(this.m_BallList[lRandomBonusBall], new Vector3(Random.Range(-35, 35), Random.Range(-15, 24), 1), Quaternion.Euler(new Vector3(0, 0, 0)));
+            lInstance = (GameObject)Instantiate(this.m_BallList[/*lRandomBonusBall*/ 3], new Vector3(Random.Range(-35, 35), Random.Range(-15, 24), 1), Quaternion.Euler(new Vector3(0, 0, 0)));
         }
 
     }

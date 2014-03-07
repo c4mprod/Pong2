@@ -7,6 +7,7 @@ public class BallScript : MonoBehaviour {
     [Range(15.0f, 50.0f)]
     public float m_minVelocity = 15;
     private float m_StartMagnitude;
+    private PlayerScript m_LastPlayer;
 
     void Awake()
     {
@@ -33,9 +34,18 @@ public class BallScript : MonoBehaviour {
         }
 	}
 
-    void  OnCollisionEnter2D(Collision2D other) 
+    public PlayerScript GetLastPlayer()
+    { 
+        return this.m_LastPlayer;
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
     {
-      this.audio.Play();
+        this.audio.Play();
+        if (other.gameObject.tag == "Player")
+        {
+            this.m_LastPlayer = other.gameObject.GetComponent<PlayerScript>();
+        }
     }
 
     public void SpeedUp()
