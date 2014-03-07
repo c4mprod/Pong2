@@ -59,12 +59,16 @@ public class MainScript : MonoBehaviour
         }
         if (this.m_EndGame == true)
         {
-            GUI.Box(new Rect(Screen.width / 2 - 55, Screen.height / 2 - 200, 160, 300), "Menu");
+            GUI.Box(new Rect(Screen.width / 2 - 55, Screen.height / 2 - 200, 160, 200), "Menu");
             if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 150, 150, 50), "Restart"))
             {
                 this.m_EndGame = false;
                 Time.timeScale = 1;
                 Application.LoadLevel("PonKemon");
+            }
+            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 75, 150, 50), "Quit"))
+            {
+                Application.Quit();
             }
         }
     }
