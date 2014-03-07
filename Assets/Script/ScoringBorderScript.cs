@@ -10,8 +10,6 @@ public class ScoringBorderScript : MonoBehaviour
 
     void OnEnable()
     {
-        // Allow to differenciate the player
-
         if (this.m_SpawnerId == 1)
         {
             MasterBallScript.m_PLayerLeftCatchMasterBall += MasterBallCatchedByPlayer;

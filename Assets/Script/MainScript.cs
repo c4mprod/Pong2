@@ -12,6 +12,7 @@ public class MainScript : MonoBehaviour
     private float m_TimeSinceLastBonusBall = 0;
 
 
+    private bool m_StartGame = true;
     private bool m_EndGame = false;
 
     private bool m_LeftPlayerUp = false;
@@ -34,9 +35,6 @@ public class MainScript : MonoBehaviour
         {
             m_Instance = this;
         }
-
-        Application.LoadLevel("PonKemon");
-        DontDestroyOnLoad(gameObject);
     }
 
 
@@ -49,6 +47,16 @@ public class MainScript : MonoBehaviour
 
     void OnGUI()
     {
+
+        if (this.m_StartGame)
+        {
+            if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 + 300, 200, 100), "Click To Play"))
+            {
+                Application.LoadLevel("PonKemon");
+                DontDestroyOnLoad(gameObject);
+                this.m_StartGame = false;
+            }
+        }
         if (this.m_EndGame == true)
         {
             GUI.Box(new Rect(Screen.width / 2 - 55, Screen.height / 2 - 200, 160, 300), "Menu");
@@ -109,7 +117,7 @@ public class MainScript : MonoBehaviour
             int lRandomBonusBall;
 
             lRandomBonusBall = Random.Range(0, this.m_BallList.Count);
-            lInstance = (GameObject)Instantiate(this.m_BallList[/*lRandomBonusBall*/ 3], new Vector3(Random.Range(-35, 35), Random.Range(-15, 24), 1), Quaternion.Euler(new Vector3(0, 0, 0)));
+            lInstance = (GameObject)Instantiate(this.m_BallList[lRandomBonusBall], new Vector3(Random.Range(-35, 35), Random.Range(-15, 24), 1), Quaternion.Euler(new Vector3(0, 0, 0)));
         }
 
     }
