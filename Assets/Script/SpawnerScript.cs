@@ -6,7 +6,7 @@ public class SpawnerScript : MonoBehaviour
     public GameObject m_Ball;
     
     
-    //Create an Orientation in order to know the velocity's range of the ball
+    //Create an Orientation in order to choose the velocity's range of the ball
     enum Orientation {Left, Right};
     private Orientation m_Orientation;
 
@@ -16,12 +16,6 @@ public class SpawnerScript : MonoBehaviour
             this.m_Orientation = Orientation.Left;
         else
             this.m_Orientation = Orientation.Right;
-    }
-
-   
-    void Update()
-    {
-
     }
 
     public void Spawn()

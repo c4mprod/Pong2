@@ -21,6 +21,7 @@ public class BallScript : MonoBehaviour {
         float lCorrectionVelocity;
 
         //Checking if the current Velocity is between m_maxVelocity and m_minVelocity
+        //Scale the velocity if it needs to be
         if (lCurrentVelocity > m_maxVelocity)
         {
             lCorrectionVelocity = lCurrentVelocity / m_maxVelocity;
@@ -32,6 +33,10 @@ public class BallScript : MonoBehaviour {
             lCorrectionVelocity = lCurrentVelocity / m_minVelocity;
             rigidbody2D.velocity /= lCorrectionVelocity;
         }
+        if (rigidbody2D.velocity.x == 0)
+        {
+            rigidbody2D.velocity.Set(rigidbody2D.velocity.x + 1, rigidbody2D.velocity.y);
+        }
 	}
 
     public PlayerScript GetLastPlayer()
@@ -39,6 +44,7 @@ public class BallScript : MonoBehaviour {
         return this.m_LastPlayer;
     }
 
+    //Save the last player who touches the ball for the MasterBallScript
     void OnCollisionEnter2D(Collision2D other)
     {
         this.audio.Play();
@@ -48,6 +54,7 @@ public class BallScript : MonoBehaviour {
         }
     }
 
+    #region "BonusBall Methods"
     public void SpeedUp()
     {
         this.rigidbody2D.velocity = new Vector2(this.rigidbody2D.velocity.x * 2, this.rigidbody2D.velocity.y * 2);
@@ -62,4 +69,5 @@ public class BallScript : MonoBehaviour {
     {
         this.rigidbody2D.velocity = Vector2.ClampMagnitude(this.rigidbody2D.velocity, this.m_StartMagnitude);
     }
+    #endregion
 }

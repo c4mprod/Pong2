@@ -8,6 +8,9 @@ public class ScoringBorderScript : MonoBehaviour
     public int m_SpawnerId;
 
 
+    #region "Events Initialisation"
+
+    // The two differents events are used to know what spawner (depending on its ID) should release the ball once the MasterBall Bonus has been captured
     void OnEnable()
     {
         if (this.m_SpawnerId == 1)
@@ -34,13 +37,15 @@ public class ScoringBorderScript : MonoBehaviour
         }
     }
 
+    #endregion
 
+    #region "Event Methods"
     public void MasterBallCatchedByPlayer(PlayerScript _Player)
     {
         _Player.AddPoint();
         this.m_Spawner.Spawn();
     }
-
+    #endregion
 
     void OnTriggerEnter2D(Collider2D other)
     {

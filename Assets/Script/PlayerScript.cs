@@ -7,6 +7,7 @@ public class PlayerScript : MonoBehaviour {
     public float m_Speed = 20.0f;
     public int m_Id;
 
+    #region "Event"
     void OnEnable()
     {
         // Allow to differenciate the player
@@ -42,20 +43,9 @@ public class PlayerScript : MonoBehaviour {
             MainScript.m_StopPlayer -= this.StopMovement;
         }
     }
+    #endregion
 
-    public void AddPoint()
-    {
-        ++this.m_Score;
-        if (this.m_Score == 10)
-            MainScript.m_Instance.EndGame();
-
-    }
-
-    public int getScore()
-    {
-     return this.m_Score;
-    }
-
+    #region "Events Methods"
     void MoveDown()
     {
         this.rigidbody2D.velocity = new Vector2(0, -1 * this.m_Speed);
@@ -69,5 +59,19 @@ public class PlayerScript : MonoBehaviour {
     void StopMovement()
     {
         this.rigidbody2D.velocity = new Vector2(0, 0);
+    }
+    #endregion
+
+    public void AddPoint()
+    {
+        ++this.m_Score;
+        if (this.m_Score == 10)
+            MainScript.m_Instance.EndGame();
+
+    }
+
+    public int getScore()
+    {
+        return this.m_Score;
     }
 }

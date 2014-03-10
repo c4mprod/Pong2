@@ -5,11 +5,7 @@ public class ScoreDisplayScript : MonoBehaviour {
 
     public PlayerScript m_Player;
 
-	void Start ()
-    {
-	
-	}
-	
+    //Gets the Player's score and displays it
 	void Update ()
     {
         this.guiText.text = "Score : " + m_Player.getScore();
