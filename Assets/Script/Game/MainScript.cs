@@ -33,7 +33,6 @@ public class MainScript : MonoBehaviour
     public static event InputAction m_KeyPressedPlayerRightDown;
     public static event InputAction m_StopPlayer;
 
-
     void Awake()
     {
         if (m_Instance == null)
