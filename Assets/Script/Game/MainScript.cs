@@ -88,10 +88,13 @@ public class MainScript : MonoBehaviour
             {
                 this.m_EndGame = false;
                 Time.timeScale = 1;
+                StopCoroutine("Appearence");
                 Application.LoadLevel("PonKemon");
+
             }
             if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 75, 150, 50), "Quit"))
             {
+                StopCoroutine("Appearence");
                 Application.Quit();
             }
         }
@@ -141,22 +144,24 @@ public class MainScript : MonoBehaviour
         }
 
         //create a random Bonusball at random position every 5 seconds
-        this.m_TimeSinceLastBonusBall += Time.deltaTime;
-
-        if (this.m_TimeSinceLastBonusBall >= 5.0 && this.m_StartGame == false)
+        if (this.m_StartGame == false)
         {
-            m_TimeSinceLastBonusBall = 0;
+            this.m_TimeSinceLastBonusBall += Time.deltaTime;
 
-            int lRandomBonusBall;
+            if (this.m_TimeSinceLastBonusBall >= 5.0)
+            {
+                m_TimeSinceLastBonusBall = 0;
 
-            lRandomBonusBall = Random.Range(0, this.m_BallList.Count);
-            this.m_CurrentBonusBall = (GameObject)Instantiate(this.m_BallList[lRandomBonusBall], new Vector3(Random.Range(-35, 35), Random.Range(-15, 24), 1), Quaternion.Euler(new Vector3(0, 0, 0)));
-            this.m_CurrentBonusBall.collider2D.enabled = false;
-            this._renderer = this.m_CurrentBonusBall.GetComponent<SpriteRenderer>();
-            this._renderer.color = new Color(0.1F, 0.1F, 0.1F, 0.1F);
-            this.StartCoroutine(Appearence());
+                int lRandomBonusBall;
+
+                lRandomBonusBall = Random.Range(0, this.m_BallList.Count);
+                this.m_CurrentBonusBall = (GameObject)Instantiate(this.m_BallList[lRandomBonusBall], new Vector3(Random.Range(-35, 35), Random.Range(-15, 24), 1), Quaternion.Euler(new Vector3(0, 0, 0)));
+                this.m_CurrentBonusBall.collider2D.enabled = false;
+                this._renderer = this.m_CurrentBonusBall.GetComponent<SpriteRenderer>();
+                this._renderer.color = new Color(0.1F, 0.1F, 0.1F, 0.1F);
+                this.StartCoroutine(Appearence());
+            }
         }
-
     }
 
     //call methods related to movement

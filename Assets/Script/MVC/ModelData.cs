@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// This class stocks the data of the PlayerModel, it can be update by the ControllerScript, it's the Model of the MVC pattern        
-/// </summary
+/// </summary>
 public class ModelData : MonoBehaviour
 {
     public List<PlayerModel> m_PlayerGlobalList;
@@ -28,7 +28,7 @@ public class ModelData : MonoBehaviour
 
     /// <summary>
     //add 1 to the index or reset it to zero (circular infinit loop)
-    /// </summary
+    /// </summary>
     public void AddPosition()
     {
         this.m_index++;
@@ -37,7 +37,7 @@ public class ModelData : MonoBehaviour
     }
     /// <summary>
     //substract 1 to the index or change it to the last PlayerModel of the List (circular infinit loop)
-    /// </summary
+    /// </summary>
     public void SubstractPosition()
     {
         this.m_index--;
@@ -46,7 +46,7 @@ public class ModelData : MonoBehaviour
     }
     /// <summary>
     // choose which player to display, depending on the parameter _index (Left, Right, Middle), it allow the controller to get the left player, the right player or the player whiwh correspond to the index
-    /// </summary
+    /// </summary>
     public PlayerModel GetPlayer(ViewScript.PlayerIndex _index)
     {
         int lCorrelationIndex = this.m_index + ((int)_index - 1);

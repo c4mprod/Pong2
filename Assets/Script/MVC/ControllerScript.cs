@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 
 /// <summary>
-/// The Class is the "Controller" of the MVC pattern, it can update the ModelData, get infos from The MOdelData and transfert the to the View       
+/// The Class is the "Controller" of the MVC pattern, it can update the ModelData, get infos from The MOdelData and transfert them to the View       
 /// </summary>
 /// 
 public class ControllerScript : MonoBehaviour
@@ -16,7 +16,7 @@ public class ControllerScript : MonoBehaviour
 
     /// <summary>
     /// This delegate is used to update the index in the ModelData       
-    /// </summary
+    /// </summary>
     public delegate void MoveIndex();
     public static event MoveIndex m_MoveIndexRight;
     public static event MoveIndex m_MoveIndexLeft;
@@ -24,7 +24,7 @@ public class ControllerScript : MonoBehaviour
 
     /// <summary>
     /// This delegate is used get the 3 PlayerModel To display       
-    /// </summary
+    /// </summary>
     public delegate PlayerModel SortPlayerModel(ViewScript.PlayerIndex _index);
     public static event SortPlayerModel m_SortPlayerModel;
 
@@ -41,7 +41,9 @@ public class ControllerScript : MonoBehaviour
         ViewScript.m_ClickLeftButton -= UpdateIndexLeft;
         ViewScript.m_ClickRightButton -= UpdateIndexRight;
     }
-
+    /// <summary>
+    /// This method fill or update the list of PlayerModel        
+    /// </summary>
     private void SortPlayerToDisplay()
     {
         if (this.m_PlayerListToDisplay.Count == 0)
@@ -64,12 +66,19 @@ public class ControllerScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Return to the View the Player to display depending on the _index  
+    /// </summary>
     public PlayerModel GetPlayerByIndex(ViewScript.PlayerIndex _index)
     {
         this.SortPlayerToDisplay();
         return this.m_PlayerListToDisplay[(int)_index];
     }
 
+
+    /// <summary>
+    /// This methodes update the m_index in the ModelData       
+    /// </summary>
     public void UpdateIndexRight()
     {
         if (m_MoveIndexRight != null)
