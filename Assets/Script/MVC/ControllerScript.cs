@@ -2,14 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
+/// <summary>
+/// The Class is the "Controller" of the MVC pattern, it can update the ModelData, get infos from The MOdelData and transfert the to the View       
+/// </summary>
+/// 
 public class ControllerScript : MonoBehaviour
 {
+
+    /// <List name="m_PlayerListToDisplay"> List of the PlayerModels which will be display in the View </param>
     private List<PlayerModel> m_PlayerListToDisplay =  new List<PlayerModel>(3);
 
+
+    /// <summary>
+    /// This delegate is used to update the index in the ModelData       
+    /// </summary
     public delegate void MoveIndex();
     public static event MoveIndex m_MoveIndexRight;
     public static event MoveIndex m_MoveIndexLeft;
 
+
+    /// <summary>
+    /// This delegate is used get the 3 PlayerModel To display       
+    /// </summary
     public delegate PlayerModel SortPlayerModel(ViewScript.PlayerIndex _index);
     public static event SortPlayerModel m_SortPlayerModel;
 

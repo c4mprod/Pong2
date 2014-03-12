@@ -2,6 +2,10 @@
 using UnityEditor;
 using System.IO;
 
+
+/// <summary>
+/// The Class contain a method that can be called to create an Asset of type T .       
+/// </summary>
 public static class CustomAssetUtility
 {
     public static void CreateAsset<T>() where T : ScriptableObject
