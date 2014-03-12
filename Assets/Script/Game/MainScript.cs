@@ -73,6 +73,7 @@ public class MainScript : MonoBehaviour
         {
             if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 + 300, 200, 100), "Click To Play"))
             {
+                this.gameObject.GetComponent<ViewScript>().enabled = false;
                 Application.LoadLevel("PonKemon");
                 DontDestroyOnLoad(gameObject);
                 this.m_StartGame = false;
