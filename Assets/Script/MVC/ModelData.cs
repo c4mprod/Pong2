@@ -7,23 +7,31 @@ using System.Collections.Generic;
 /// </summary>
 public class ModelData : MonoBehaviour
 {
-    public List<PlayerModel> m_PlayerGlobalList;
+    public List<PlayerModel> m_PlayerModelGlobalList;
+    public List<GameObject> m_PlayerObjectList;
 
-    /// <int name="m_indew">the int is the index which point out what PlayerModel will be in the cente Label of the GUI </param>
+   
     public int m_index = 0;
 
     void OnEnable()
     {
+        int lIndex = 0;
+        foreach(GameObject lelement in m_PlayerObjectList)
+        {
+            lelement.AddComponent<SpriteRenderer>();
+            lelement.GetComponent<SpriteRenderer>().sprite = m_PlayerModelGlobalList[lIndex].m_SpriteModel;
+            ++lIndex;
+        }
         ControllerScript.m_MoveIndexLeft += this.SubstractPosition;
         ControllerScript.m_MoveIndexRight += this.AddPosition;
-        ControllerScript.m_SortPlayerModel += this.GetPlayer;
+        ControllerScript.m_GetLeftPlayer += this.GetNextPlayer;
     }
 
     void OnDisable()
     {
         ControllerScript.m_MoveIndexLeft -= this.SubstractPosition;
         ControllerScript.m_MoveIndexRight -= this.AddPosition;
-        ControllerScript.m_SortPlayerModel -= this.GetPlayer;
+        ControllerScript.m_GetLeftPlayer -= this.GetNextPlayer;
     }
 
     /// <summary>
@@ -32,7 +40,7 @@ public class ModelData : MonoBehaviour
     public void AddPosition()
     {
         this.m_index++;
-        if (this.m_index > this.m_PlayerGlobalList.Count - 1)
+        if (this.m_index > this.m_PlayerModelGlobalList.Count - 1)
             this.m_index = 0;
     }
     /// <summary>
@@ -42,19 +50,18 @@ public class ModelData : MonoBehaviour
     {
         this.m_index--;
         if (this.m_index < 0)
-            this.m_index = this.m_PlayerGlobalList.Count - 1;
+            this.m_index = this.m_PlayerModelGlobalList.Count - 1;
     }
-    /// <summary>
-    // choose which player to display, depending on the parameter _index (Left, Right, Middle), it allow the controller to get the left player, the right player or the player whiwh correspond to the index
-    /// </summary>
-    public PlayerModel GetPlayer(ViewScript.PlayerIndex _index)
+   
+    public GameObject GetNextPlayer(GameObject _object)
     {
-        int lCorrelationIndex = this.m_index + ((int)_index - 1);
-        if (lCorrelationIndex < 0)
-            return this.m_PlayerGlobalList[this.m_PlayerGlobalList.Count - 1];
-        else if (lCorrelationIndex > this.m_PlayerGlobalList.Count - 1)
-            return this.m_PlayerGlobalList[0];
+        int i = -1;
+
+        while (m_PlayerObjectList[++i] != _object) ;
+        --i;
+        if (i == -1)
+            return this.m_PlayerObjectList[this.m_PlayerObjectList.Count - 1];
         else
-            return this.m_PlayerGlobalList[lCorrelationIndex];
+            return this.m_PlayerObjectList[i];
     }
 }

@@ -9,11 +9,6 @@ using System.Collections.Generic;
 /// 
 public class ControllerScript : MonoBehaviour
 {
-
-    /// <List name="m_PlayerListToDisplay"> List of the PlayerModels which will be display in the View </param>
-    private List<PlayerModel> m_PlayerListToDisplay =  new List<PlayerModel>(3);
-
-
     /// <summary>
     /// This delegate is used to update the index in the ModelData       
     /// </summary>
@@ -21,60 +16,18 @@ public class ControllerScript : MonoBehaviour
     public static event MoveIndex m_MoveIndexRight;
     public static event MoveIndex m_MoveIndexLeft;
 
-
-    /// <summary>
-    /// This delegate is used get the 3 PlayerModel To display       
-    /// </summary>
-    public delegate PlayerModel SortPlayerModel(ViewScript.PlayerIndex _index);
-    public static event SortPlayerModel m_SortPlayerModel;
+    public delegate GameObject GetPlayer(GameObject _object);
+    public static event GetPlayer m_GetLeftPlayer;
 
     void OnEnable()
     {
-        ViewScript.m_GetPlayerModel += this.GetPlayerByIndex;
-        ViewScript.m_ClickLeftButton += UpdateIndexLeft;
-        ViewScript.m_ClickRightButton += UpdateIndexRight;
+        ViewScript.m_CheckNextMove += CheckNextMove;
     }
 
     void OnDisable()
     {
-        ViewScript.m_GetPlayerModel -= this.GetPlayerByIndex;
-        ViewScript.m_ClickLeftButton -= UpdateIndexLeft;
-        ViewScript.m_ClickRightButton -= UpdateIndexRight;
+        ViewScript.m_CheckNextMove -= CheckNextMove;
     }
-    /// <summary>
-    /// This method fill or update the list of PlayerModel        
-    /// </summary>
-    private void SortPlayerToDisplay()
-    {
-        if (this.m_PlayerListToDisplay.Count == 0)
-        {
-           if (m_SortPlayerModel != null)
-                this.m_PlayerListToDisplay.Add(m_SortPlayerModel(ViewScript.PlayerIndex.Left));
-            if (m_SortPlayerModel != null)
-                this.m_PlayerListToDisplay.Add(m_SortPlayerModel(ViewScript.PlayerIndex.Middle));
-            if (m_SortPlayerModel != null)
-                this.m_PlayerListToDisplay.Add(m_SortPlayerModel(ViewScript.PlayerIndex.Right));
-        }
-        else
-        {
-            if (m_SortPlayerModel != null)
-                this.m_PlayerListToDisplay[0] = m_SortPlayerModel(ViewScript.PlayerIndex.Left);
-            if (m_SortPlayerModel != null)
-                this.m_PlayerListToDisplay[1] = m_SortPlayerModel(ViewScript.PlayerIndex.Middle);
-            if (m_SortPlayerModel != null)
-                this.m_PlayerListToDisplay[2] = m_SortPlayerModel(ViewScript.PlayerIndex.Right);
-        }
-    }
-
-    /// <summary>
-    /// Return to the View the Player to display depending on the _index  
-    /// </summary>
-    public PlayerModel GetPlayerByIndex(ViewScript.PlayerIndex _index)
-    {
-        this.SortPlayerToDisplay();
-        return this.m_PlayerListToDisplay[(int)_index];
-    }
-
 
     /// <summary>
     /// This methodes update the m_index in the ModelData       
@@ -89,5 +42,20 @@ public class ControllerScript : MonoBehaviour
     {
         if (m_MoveIndexLeft != null)
             m_MoveIndexLeft();
+    }
+
+
+    void CheckNextMove(Plane[] _planes, GameObject _object)
+    {
+        GameObject lRightObject = null;
+
+        if (m_GetLeftPlayer != null)
+            lRightObject = m_GetLeftPlayer(_object);
+        if (GeometryUtility.TestPlanesAABB(_planes, lRightObject.renderer.bounds) && _object.GetComponent<PlayerDisplay>()._moved == false)
+        {
+            _object.transform.position = new Vector3(lRightObject.transform.position.x + 3, lRightObject.transform.position.y, 0);
+            _object.GetComponent<PlayerDisplay>()._moved = true;
+        }
+
     }
 }
