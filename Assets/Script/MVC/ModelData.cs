@@ -22,9 +22,11 @@ public class ModelData : MonoBehaviour
             lelement.GetComponent<SpriteRenderer>().sprite = m_PlayerModelGlobalList[lIndex].m_SpriteModel;
             ++lIndex;
         }
+        m_index = lIndex;
         ControllerScript.m_MoveIndexLeft += this.SubstractPosition;
         ControllerScript.m_MoveIndexRight += this.AddPosition;
         ControllerScript.m_GetLeftPlayer += this.GetNextPlayer;
+        ControllerScript.m_getSpriteModel += this.GetModelSprite;
     }
 
     void OnDisable()
@@ -32,6 +34,7 @@ public class ModelData : MonoBehaviour
         ControllerScript.m_MoveIndexLeft -= this.SubstractPosition;
         ControllerScript.m_MoveIndexRight -= this.AddPosition;
         ControllerScript.m_GetLeftPlayer -= this.GetNextPlayer;
+        ControllerScript.m_getSpriteModel -= this.GetModelSprite;
     }
 
     /// <summary>
@@ -63,5 +66,10 @@ public class ModelData : MonoBehaviour
             return this.m_PlayerObjectList[this.m_PlayerObjectList.Count - 1];
         else
             return this.m_PlayerObjectList[i];
+    }
+
+    public Sprite GetModelSprite()
+    {
+        return (this.m_PlayerModelGlobalList[m_index].m_SpriteModel);
     }
 }

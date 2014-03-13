@@ -19,6 +19,9 @@ public class ControllerScript : MonoBehaviour
     public delegate GameObject GetPlayer(GameObject _object);
     public static event GetPlayer m_GetLeftPlayer;
 
+    public delegate Sprite getModelIndex();
+    public static event getModelIndex m_getSpriteModel;
+
     void OnEnable()
     {
         ViewScript.m_CheckNextMove += CheckNextMove;
@@ -48,12 +51,17 @@ public class ControllerScript : MonoBehaviour
     void CheckNextMove(Plane[] _planes, GameObject _object)
     {
         GameObject lRightObject = null;
+        Sprite lSprite = null;
 
         if (m_GetLeftPlayer != null)
             lRightObject = m_GetLeftPlayer(_object);
         if (GeometryUtility.TestPlanesAABB(_planes, lRightObject.renderer.bounds) && _object.GetComponent<PlayerDisplay>()._moved == false)
         {
             _object.transform.position = new Vector3(lRightObject.transform.position.x + 3, lRightObject.transform.position.y, 0);
+            this.UpdateIndexRight();
+            if (m_getSpriteModel != null)
+               lSprite = m_getSpriteModel();
+            _object.GetComponent<SpriteRenderer>().sprite = lSprite;
             _object.GetComponent<PlayerDisplay>()._moved = true;
         }
 

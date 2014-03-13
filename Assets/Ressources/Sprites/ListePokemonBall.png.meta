@@ -53,7 +53,7 @@ TextureImporter:
         width: 91
         height: 91
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: ListePokemonBall_3
       rect:
         serializedVersion: 2
@@ -62,7 +62,7 @@ TextureImporter:
         width: 91
         height: 91
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: ListePokemonBall_10
       rect:
         serializedVersion: 2
@@ -71,7 +71,7 @@ TextureImporter:
         width: 91
         height: 90
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: ListePokemonBall_16
       rect:
         serializedVersion: 2
@@ -80,6 +80,258 @@ TextureImporter:
         width: 91
         height: 95
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_4
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 674
+        width: 99
+        height: 91
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_5
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 672
+        width: 103
+        height: 97
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_6
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 666
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_7
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 538
+        width: 95
+        height: 104
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_8
+      rect:
+        serializedVersion: 2
+        x: 1199
+        y: 536
+        width: 93
+        height: 107
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_9
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 260
+        width: 96
+        height: 109
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 539
+        width: 101
+        height: 94
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_11
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 538
+        width: 99
+        height: 102
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_12
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 544
+        width: 98
+        height: 90
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_13
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 541
+        width: 104
+        height: 94
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_14
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 534
+        width: 104
+        height: 101
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_15
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 540
+        width: 92
+        height: 101
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_16
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 398
+        width: 101
+        height: 107
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_17
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 401
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_18
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 400
+        width: 93
+        height: 107
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_19
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 401
+        width: 108
+        height: 101
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_20
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 402
+        width: 94
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_21
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 390
+        width: 89
+        height: 109
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_22
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 267
+        width: 105
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_23
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 268
+        width: 101
+        height: 102
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_24
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 268
+        width: 105
+        height: 99
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_25
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 263
+        width: 100
+        height: 106
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_26
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 130
+        width: 96
+        height: 102
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_27
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 6
+        width: 98
+        height: 94
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_28
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 6
+        width: 99
+        height: 97
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_29
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 4
+        width: 98
+        height: 101
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_30
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 10
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: ListePokemonBall_31
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 5
+        width: 102
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
   spritePackingTag: 
   userData: 
