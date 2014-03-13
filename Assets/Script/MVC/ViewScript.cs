@@ -35,17 +35,19 @@ public class ViewScript : MonoBehaviour
     /// </summary>
     void Start()
     {
+        /*
         if (m_GetPlayerModel != null)
         {
             this.m_LeftPlayerContent = new GUIContent(m_GetPlayerModel(PlayerIndex.Left).m_SpriteModel.texture);
             this.m_MiddlePlayerContent = new GUIContent(m_GetPlayerModel(PlayerIndex.Middle).m_SpriteModel.texture);
             this.m_RightPlayerContent = new GUIContent(m_GetPlayerModel(PlayerIndex.Right).m_SpriteModel.texture);
         }
+         * */
     }
 
     void OnGUI()
     {
-        Debug.Log("GUI");
+     /*
         GUI.Box(new Rect(Screen.width / 2 - 300,Screen.height / 2 - 100, 550, 150), "Menu");
 
 
@@ -78,6 +80,7 @@ public class ViewScript : MonoBehaviour
        GUI.Label(new Rect(Screen.width / 2 - 230, Screen.height / 2 - 90 , 130, 200), this.m_LeftPlayerContent);
        GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 90, 130, 200), this.m_MiddlePlayerContent);
        GUI.Label(new Rect(Screen.width / 2 + 30, Screen.height / 2 - 90, 130, 200), this.m_RightPlayerContent);
+      */
     }
 
 

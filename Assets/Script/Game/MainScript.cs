@@ -2,12 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// This Class is the GameControler. It's used to deal with the inputs, to generate bonus balls, to start and end the game.It's also a singleton which don't destroy itself on load.       
+/// </summary>
 public class MainScript : MonoBehaviour
 {
 
     public static MainScript m_Instance { get; private set; }
 
-    // List of the BonusBall which can be instanciate in the game
+    /// <List name=" m_BallList"> List of the BonusBall which can be instanciate in the game </param>
     public List<GameObject> m_BallList;
     private float m_TimeSinceLastBonusBall = 0;
     [Range(1.5f, 3.0f)]
@@ -18,14 +21,18 @@ public class MainScript : MonoBehaviour
 
     private bool m_StartGame = true;
     private bool m_EndGame = false;
-
-    // Booleans which are used to deal with the inputs and the movements of the players
+    /// <summary>
+    /// Booleans which are used to deal with the inputs and the movements of the players
+    /// </summary>
     private bool m_LeftPlayerUp = false;
     private bool m_LeftPlayerDown = false;
     private bool m_RightPlayerUp = false;
     private bool m_RightPlayerDown = false;
     private bool m_Released = false;
 
+    /// <summary>
+    /// Delegates that deals with the inputs, see PlayerScript
+    /// </summary>
     public delegate void InputAction();
     public static event InputAction m_KeyPressedPlayerLeftUp;
     public static event InputAction m_KeyPressedPlayerLeftDown;
@@ -41,7 +48,9 @@ public class MainScript : MonoBehaviour
         }
     }
 
-    // Pause the game 
+    /// <summary>
+    /// pause the Game
+    /// </summary>
     public void EndGame()
     {
         this.m_EndGame = true;
@@ -49,7 +58,9 @@ public class MainScript : MonoBehaviour
     }
 
     #region "IEnumerator"
-    // Is used to give the BonusBall a nice effect when they come into play and activate their collider when it's done
+    /// <summary>
+    /// Is used to give the BonusBall a nice effect when they come into play and activate their collider when it's done
+    /// </summary> 
     IEnumerator Appearence()
     {
         for (float t = 0; t < ShowTime; t += Time.deltaTime)
@@ -68,7 +79,9 @@ public class MainScript : MonoBehaviour
     #region "GUI"
     void OnGUI()
     {
-        // Start Game Button
+        /// <summary>
+        /// Start Game Button
+        /// </summary> 
         if (this.m_StartGame)
         {
             if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 + 300, 200, 100), "Click To Play"))
@@ -99,7 +112,6 @@ public class MainScript : MonoBehaviour
             }
         }
     }
-
     #endregion
 
 
