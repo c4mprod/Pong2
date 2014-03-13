@@ -19,8 +19,11 @@ public class ControllerScript : MonoBehaviour
     public delegate GameObject GetPlayer(GameObject _object);
     public static event GetPlayer m_GetLeftPlayer;
 
-    public delegate Sprite getModelIndex();
-    public static event getModelIndex m_getSpriteModel;
+    public delegate Sprite GetModelIndex();
+    public static event GetModelIndex m_getSpriteModel;
+
+    public delegate float GetDragDirection();
+    public static event GetDragDirection m_getMouseDrag;
 
     void OnEnable()
     {
@@ -50,20 +53,26 @@ public class ControllerScript : MonoBehaviour
 
     void CheckNextMove(Plane[] _planes, GameObject _object)
     {
-        GameObject lRightObject = null;
+        GameObject lNewObject = null;
         Sprite lSprite = null;
+        float lDrag = 0;
 
-        if (m_GetLeftPlayer != null)
-            lRightObject = m_GetLeftPlayer(_object);
-        if (GeometryUtility.TestPlanesAABB(_planes, lRightObject.renderer.bounds) && _object.GetComponent<PlayerDisplay>()._moved == false)
+        if (m_getMouseDrag != null)
+            lDrag = m_getMouseDrag();
+        Debug.Log("Drag" + lDrag);
+        if (lDrag <= 0)
         {
-            _object.transform.position = new Vector3(lRightObject.transform.position.x + 3, lRightObject.transform.position.y, 0);
-            this.UpdateIndexRight();
-            if (m_getSpriteModel != null)
-               lSprite = m_getSpriteModel();
-            _object.GetComponent<SpriteRenderer>().sprite = lSprite;
-            _object.GetComponent<PlayerDisplay>()._moved = true;
+            if (m_GetLeftPlayer != null)
+                lNewObject = m_GetLeftPlayer(_object);
+            if (GeometryUtility.TestPlanesAABB(_planes, lNewObject.renderer.bounds) && _object.GetComponent<PlayerDisplay>()._moved == false)
+            {
+                _object.transform.position = new Vector3(lNewObject.transform.position.x + 3, lNewObject.transform.position.y, 0);
+                this.UpdateIndexRight();
+                if (m_getSpriteModel != null)
+                    lSprite = m_getSpriteModel();
+                _object.GetComponent<SpriteRenderer>().sprite = lSprite;
+                _object.GetComponent<PlayerDisplay>()._moved = true;
+            }
         }
-
     }
 }
