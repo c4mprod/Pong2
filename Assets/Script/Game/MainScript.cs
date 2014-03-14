@@ -115,11 +115,12 @@ public class MainScript : MonoBehaviour
 
         if (this.m_ChoosePlayer)
         {
-            if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 + 300, 200, 100), "Click To Play"))
+            if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 + 70, 200, 100), "Click To Play"))
             {
                 Application.LoadLevel("Ponkemon");
                 DontDestroyOnLoad(gameObject);
                 this.m_ChoosePlayer = false;
+
                 if (m_GetPlayerInModel != null)
                     this.m_ChosenPlayer = m_GetPlayerInModel();
             }
