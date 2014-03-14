@@ -3,8 +3,9 @@ using System.Collections;
 
 public class MoveCamera : MonoBehaviour
 {
-    public float hspeed = 30.0f;
-    public Vector3 dragOrigin;
+    public float hspeed = 10.0f;
+    private Vector3 dragOrigin;
+    private float m_h;
 
     void OnEnable()
     {
@@ -19,7 +20,7 @@ public class MoveCamera : MonoBehaviour
     private Vector3 m_pos = new Vector3(0, 0, 0);
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+      if (Input.GetMouseButtonDown(0))
         {
             dragOrigin = Input.mousePosition;
             return;
@@ -28,7 +29,7 @@ public class MoveCamera : MonoBehaviour
 
         m_pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
         Vector3 move = new Vector3(-m_pos.x * hspeed * Time.deltaTime, 0);
-        transform.Translate(move, Space.World);  
+        transform.Translate(move, Space.World);
 	}
 
     public float GetDrag()
