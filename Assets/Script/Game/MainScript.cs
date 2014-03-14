@@ -9,10 +9,13 @@ public class MainScript : MonoBehaviour
 {
 
     public static MainScript m_Instance { get; private set; }
+    public Sprite m_ChosenPlayer;
+
 
     /// <List name=" m_BallList"> List of the BonusBall which can be instanciate in the game </param>
     public List<GameObject> m_BallList;
     private float m_TimeSinceLastBonusBall = 0;
+    
     [Range(1.5f, 3.0f)]
     public float ShowTime = 1.5F;
     private SpriteRenderer _renderer;
@@ -21,6 +24,8 @@ public class MainScript : MonoBehaviour
 
     private bool m_StartGame = true;
     private bool m_EndGame = false;
+    private bool m_ChoosePlayer = false;
+
     /// <summary>
     /// Booleans which are used to deal with the inputs and the movements of the players
     /// </summary>
@@ -40,12 +45,27 @@ public class MainScript : MonoBehaviour
     public static event InputAction m_KeyPressedPlayerRightDown;
     public static event InputAction m_StopPlayer;
 
+    public delegate Sprite GetPlayerInModel();
+    public static event GetPlayerInModel m_GetPlayerInModel;
+
     void Awake()
     {
         if (m_Instance == null)
         {
             m_Instance = this;
         }
+    }
+
+
+    void OnEnable()
+    {
+        PlayerScript.m_getSprite += this.GetChosenSprite;
+    }
+
+
+    void OnDisable()
+    { 
+        PlayerScript.m_getSprite -= this.GetChosenSprite;
     }
 
     /// <summary>
@@ -84,12 +104,24 @@ public class MainScript : MonoBehaviour
         /// </summary> 
         if (this.m_StartGame)
         {
+            if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 + 300, 200, 100), "Click to choose your player"))
+            {
+                Application.LoadLevel("PlayerLoader");
+                DontDestroyOnLoad(gameObject);
+                this.m_ChoosePlayer = true;
+                this.m_StartGame = false;
+            }
+        }
+
+        if (this.m_ChoosePlayer)
+        {
             if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 + 300, 200, 100), "Click To Play"))
             {
-                this.gameObject.GetComponent<ViewScript>().enabled = false;
-                Application.LoadLevel("PonKemon");
+                Application.LoadLevel("Ponkemon");
                 DontDestroyOnLoad(gameObject);
-                this.m_StartGame = false;
+                this.m_ChoosePlayer = false;
+                if (m_GetPlayerInModel != null)
+                    this.m_ChosenPlayer = m_GetPlayerInModel();
             }
         }
 
@@ -156,7 +188,7 @@ public class MainScript : MonoBehaviour
         }
 
         //create a random Bonusball at random position every 5 seconds
-        if (this.m_StartGame == false)
+        if (this.m_StartGame == false && this.m_ChoosePlayer == false)
         {
             this.m_TimeSinceLastBonusBall += Time.deltaTime;
 
@@ -175,7 +207,7 @@ public class MainScript : MonoBehaviour
             }
         }
     }
-
+        
     //call methods related to movement
     void FixedUpdate()
     {
@@ -236,4 +268,10 @@ public class MainScript : MonoBehaviour
         }
     }
     #endregion
+
+
+    public Sprite GetChosenSprite()
+    {
+        return this.m_ChosenPlayer;
+    }
 }

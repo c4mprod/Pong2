@@ -7,7 +7,20 @@ public class PlayerScript : MonoBehaviour {
     public float m_Speed = 20.0f;
     public int m_Id;
 
+
+    public delegate Sprite GetChosenSprite();
+    public static event GetChosenSprite m_getSprite;
+
     #region "Event"
+
+    void Awake()
+    {
+        if (m_getSprite != null)
+        {
+            if (m_getSprite != null)
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = m_getSprite();
+        }
+    }
     void OnEnable()
     {
         // Allow to differenciate the player

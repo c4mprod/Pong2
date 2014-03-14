@@ -35,6 +35,7 @@ public class ModelData : MonoBehaviour
         ControllerScript.m_getSpriteModelLeft += this.GetModelSpriteLeft;
         ControllerScript.m_Reset += this.ResetAllMovement;
         ControllerScript.m_Select += this.UpdateChosenPlayer;
+        MainScript.m_GetPlayerInModel += this.GetCHosenPlayerSprite;
     }
 
     void OnDisable()
@@ -46,7 +47,8 @@ public class ModelData : MonoBehaviour
         ControllerScript.m_getSpriteModelLeft -= this.GetModelSpriteLeft;
         ControllerScript.m_GetLeftPlayer -= this.GetNextPlayerLeft;
         ControllerScript.m_Reset -= this.ResetAllMovement;
-        ControllerScript.m_Select += this.UpdateChosenPlayer;
+        ControllerScript.m_Select -= this.UpdateChosenPlayer;
+        MainScript.m_GetPlayerInModel -= this.GetCHosenPlayerSprite;
     }
 
     /// <summary>
@@ -126,5 +128,10 @@ public class ModelData : MonoBehaviour
                 m_ChosenPlayer.GetComponent<SpriteRenderer>().sprite = lCurrentObjectSprite;
             }
         }
+    }
+
+    public Sprite GetCHosenPlayerSprite()
+    {
+        return this.m_ChosenPlayer.GetComponent<SpriteRenderer>().sprite;
     }
 }

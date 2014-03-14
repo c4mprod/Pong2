@@ -17,11 +17,18 @@ public class ViewScript : MonoBehaviour
     public delegate void NextMove(Plane[] _planes, GameObject _object);
     public static event NextMove m_CheckNextMove;
 
+
+    /// <summary>
+    ///  Get the SliderCamera planes for checks
+    /// </summary>
     void Start()
     {
         m_Planes = GeometryUtility.CalculateFrustumPlanes(m_SliderCamera);
     }
 
+    /// <summary>
+    /// Check which GameObject is seen by the SliderCamera and send a event to the Controller to update the others GameObjects
+    /// </summary>
     void Update()
     {
         m_Planes = GeometryUtility.CalculateFrustumPlanes(m_SliderCamera);
@@ -30,7 +37,6 @@ public class ViewScript : MonoBehaviour
 
             if (GeometryUtility.TestPlanesAABB(m_Planes, lelement.renderer.bounds))
             {
-               // Debug.Log(lelement.name + " has been detected!");
                 if (lelement.GetComponent<PlayerDisplay>()._moved)
                     lelement.GetComponent<PlayerDisplay>()._moved = false;
             }

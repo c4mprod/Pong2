@@ -16,11 +16,23 @@ public class ControllerScript : MonoBehaviour
     public static event MoveIndex m_MoveIndexRight;
     public static event MoveIndex m_MoveIndexLeft;
 
+    /// <summary>
+    /// This delegate is used to reset all the boolean m_moved in PlayerDisplay
+    /// </summary>
     public delegate void ResetMovement();
     public static event ResetMovement m_Reset;
 
+    /// <summary>
+    /// This delegate is used to update the chosen player in ModelData
+    /// </summary>
+    /// <param name="_object"> the object on which the player clicked </param>
     public delegate void SetSelectedPlayer(GameObject _object);
     public static event SetSelectedPlayer m_Select;
+
+    /// <summary>
+    /// This delegate is used to Get the previous/next player of teh _object in order to know if the _object should be moved or not.
+    /// </summary>
+    /// <param name="_object"> The current object out of the view </param>
 
     public delegate GameObject GetPlayer(GameObject _object);
     public static event GetPlayer m_GetLeftPlayer;
@@ -82,7 +94,8 @@ public class ControllerScript : MonoBehaviour
             m_moveright = true;
             if (m_moveleft == true)
             {
-                m_Reset();
+                if (m_Reset != null)
+                    m_Reset();
                 m_moveleft = false;
             }
 
@@ -112,7 +125,8 @@ public class ControllerScript : MonoBehaviour
             m_moveleft = true;
             if (m_moveright == true)
             {
-                m_Reset();
+                if (m_Reset != null)
+                    m_Reset();
                 m_moveright = false;
             }
 
