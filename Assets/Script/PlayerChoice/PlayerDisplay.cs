@@ -11,7 +11,7 @@ public class PlayerDisplay : MonoBehaviour
 
     void OnMouseOver()
     {
-       if (Input.GetMouseButtonDown(0))
+       if (Input.GetMouseButtonUp(0))
        {
            if (m_Click != null)
            {
