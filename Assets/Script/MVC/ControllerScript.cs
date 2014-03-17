@@ -67,6 +67,11 @@ public class ControllerScript : MonoBehaviour
         PlayerDisplay.m_Click -= this.ChooseSelectedPlayer;
     }
 
+    public void LoadGameScene()
+    {
+        Application.LoadLevel("Ponkemon");
+    }
+
     /// <summary>
     /// This methodes update the m_RightIndex and m_LeftIndex in the ModelData       
     /// </summary>

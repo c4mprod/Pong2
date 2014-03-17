@@ -22,10 +22,6 @@ public class MainScript : MonoBehaviour
     private Color _color = new Color(0.1F, 0.1F, 0.1F, 0.1F);
     private GameObject m_CurrentBonusBall;
 
-    private bool m_StartGame = true;
-    private bool m_EndGame = false;
-    private bool m_ChoosePlayer = false;
-
     /// <summary>
     /// Booleans which are used to deal with the inputs and the movements of the players
     /// </summary>
@@ -44,6 +40,9 @@ public class MainScript : MonoBehaviour
     public static event InputAction m_KeyPressedPlayerRightUp;
     public static event InputAction m_KeyPressedPlayerRightDown;
     public static event InputAction m_StopPlayer;
+    
+    public delegate void GUIEndGame();
+    public static event GUIEndGame m_EndGame;
 
     public delegate Sprite GetPlayerInModel();
     public static event GetPlayerInModel m_GetPlayerInModel;
@@ -73,9 +72,14 @@ public class MainScript : MonoBehaviour
     /// </summary>
     public void EndGame()
     {
-        this.m_EndGame = true;
-        Time.timeScale = 0;
+        if (m_EndGame != null)
+        {
+            StopCoroutine("Appearence");
+            m_EndGame();
+            Time.timeScale = 0;
+        }
     }
+
 
     #region "IEnumerator"
     /// <summary>
@@ -96,56 +100,11 @@ public class MainScript : MonoBehaviour
     }
     #endregion
 
-    #region "GUI"
-    void OnGUI()
+    public void LoadSelectionPlayerScene()
     {
-        /// <summary>
-        /// Start Game Button
-        /// </summary> 
-        if (this.m_StartGame)
-        {
-            if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 + 300, 200, 100), "Click to choose your player"))
-            {
-                Application.LoadLevel("PlayerLoader");
-                DontDestroyOnLoad(gameObject);
-                this.m_ChoosePlayer = true;
-                this.m_StartGame = false;
-            }
-        }
-
-        if (this.m_ChoosePlayer)
-        {
-            if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 + 70, 200, 100), "Click To Play"))
-            {
-                Application.LoadLevel("Ponkemon");
-                DontDestroyOnLoad(gameObject);
-                this.m_ChoosePlayer = false;
-
-                if (m_GetPlayerInModel != null)
-                    this.m_ChosenPlayer = m_GetPlayerInModel();
-            }
-        }
-
-        //End Game button
-        if (this.m_EndGame == true)
-        {
-            GUI.Box(new Rect(Screen.width / 2 - 55, Screen.height / 2 - 200, 160, 200), "Menu");
-            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 150, 150, 50), "Restart"))
-            {
-                this.m_EndGame = false;
-                Time.timeScale = 1;
-                StopCoroutine("Appearence");
-                Application.LoadLevel("PonKemon");
-
-            }
-            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 75, 150, 50), "Quit"))
-            {
-                StopCoroutine("Appearence");
-                Application.Quit();
-            }
-        }
+        Application.LoadLevel("PlayerLoader");
+        DontDestroyOnLoad(gameObject);
     }
-    #endregion
 
 
     #region "Update and fixedUpdate"
@@ -191,8 +150,15 @@ public class MainScript : MonoBehaviour
             this.m_RightPlayerDown = false;
         }
 
+
+        if (Application.loadedLevel == 1)
+        {
+            if (m_GetPlayerInModel != null)
+                this.m_ChosenPlayer = m_GetPlayerInModel();
+        }
+
         //create a random Bonusball at random position every 5 seconds
-        if (this.m_StartGame == false && this.m_ChoosePlayer == false)
+        if (Application.loadedLevel == 2)
         {
             this.m_TimeSinceLastBonusBall += Time.deltaTime;
 
