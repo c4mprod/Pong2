@@ -10,7 +10,7 @@ public class MainScript : MonoBehaviour
 
     public static MainScript m_Instance { get; private set; }
     public Sprite m_ChosenPlayer;
-
+    public int m_ScreenWidth = Screen.width;
 
     /// <List name=" m_BallList"> List of the BonusBall which can be instanciate in the game </param>
     public List<GameObject> m_BallList;
@@ -152,6 +152,9 @@ public class MainScript : MonoBehaviour
     //Get the inputs and change booleans, methods related to the movement are called in the fixed update.
     void Update()
     {
+
+        Debug.Log("Resolution : " + Screen.height + " " + Screen.width);
+
         if (Input.GetKey(KeyCode.Z))
             this.m_LeftPlayerUp = true;
 
