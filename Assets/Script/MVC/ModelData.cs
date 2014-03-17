@@ -22,6 +22,7 @@ public class ModelData : MonoBehaviour
         {
             lelement.AddComponent<SpriteRenderer>();
             lelement.GetComponent<SpriteRenderer>().sprite = m_PlayerModelGlobalList[lIndex].m_SpriteModel;
+            lelement.GetComponentInChildren<TextMesh>().text += lIndex;
             ++lIndex;
         }
         m_RightIndex = lIndex;
@@ -35,6 +36,7 @@ public class ModelData : MonoBehaviour
         ControllerScript.m_getSpriteModelLeft += this.GetModelSpriteLeft;
         ControllerScript.m_Reset += this.ResetAllMovement;
         ControllerScript.m_Select += this.UpdateChosenPlayer;
+        ControllerScript.m_GetIndex += this.GetIndex;
         MainScript.m_GetPlayerInModel += this.GetCHosenPlayerSprite;
     }
 
@@ -48,6 +50,7 @@ public class ModelData : MonoBehaviour
         ControllerScript.m_GetLeftPlayer -= this.GetNextPlayerLeft;
         ControllerScript.m_Reset -= this.ResetAllMovement;
         ControllerScript.m_Select -= this.UpdateChosenPlayer;
+        ControllerScript.m_GetIndex += this.GetIndex;
         MainScript.m_GetPlayerInModel -= this.GetCHosenPlayerSprite;
     }
 
@@ -108,6 +111,14 @@ public class ModelData : MonoBehaviour
     public Sprite GetModelSpriteLeft()
     {
         return (this.m_PlayerModelGlobalList[m_LeftIndex].m_SpriteModel);
+    }
+
+    public int GetIndex(ControllerScript.Index _Index)
+    {
+        if (_Index == ControllerScript.Index.Left)
+            return this.m_LeftIndex;
+        else
+            return this.m_RightIndex;
     }
 
     public void ResetAllMovement()
