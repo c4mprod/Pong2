@@ -78,7 +78,10 @@ public class ModelData : MonoBehaviour
         if (this.m_RightIndex < 0)
             this.m_RightIndex = this.m_PlayerModelGlobalList.Count - 1;
     }
-   
+
+    /// <summary>
+    //Return the next player to display when he camera is dragged to the right
+    /// </summary>
     public GameObject GetNextPlayerRight(GameObject _object)
     {
         int i = -1;
@@ -91,6 +94,9 @@ public class ModelData : MonoBehaviour
             return this.m_PlayerObjectList[i];
     }
 
+    /// <summary>
+    //Return the next player to display when he camera is dragged to the left
+    /// </summary>
     public GameObject GetNextPlayerLeft(GameObject _object)
     {
         int i = -1;
@@ -103,16 +109,25 @@ public class ModelData : MonoBehaviour
             return this.m_PlayerObjectList[i];
     }
 
+    /// <summary>
+    //Return the next player sprite to display when he camera is dragged to the right
+    /// </summary>
     public Sprite GetModelSpriteRight()
     {
         return (this.m_PlayerModelGlobalList[m_RightIndex].m_SpriteModel);
     }
 
+    /// <summary>
+    //Return the next player sprite to display when he camera is dragged to the left
+    /// </summary>
     public Sprite GetModelSpriteLeft()
     {
         return (this.m_PlayerModelGlobalList[m_LeftIndex].m_SpriteModel);
     }
 
+    /// <summary>
+    // Return the index to display under the playerModel
+    /// </summary>
     public int GetIndex(ControllerScript.Index _Index)
     {
         if (_Index == ControllerScript.Index.Left)
@@ -121,6 +136,9 @@ public class ModelData : MonoBehaviour
             return this.m_RightIndex;
     }
 
+    /// <summary>
+    // Reset all the movements of the Players
+    /// </summary>
     public void ResetAllMovement()
     {
         foreach (GameObject element in m_PlayerObjectList)
@@ -129,6 +147,9 @@ public class ModelData : MonoBehaviour
         }
     }
 
+    /// <summary>
+    // update the Sprite of the chosen PlayerModel when the Player clicks on one
+    /// </summary>
     public void UpdateChosenPlayer(GameObject _object)
     {
         Sprite lCurrentObjectSprite = _object.GetComponent<SpriteRenderer>().sprite;

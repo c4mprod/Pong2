@@ -6,13 +6,12 @@ using System.Collections;
 /// </summary>
 public class EndGUIDisplay : MonoBehaviour
 {
-    public UIRoot m_EndGameMenu;
+    public UISprite m_EndGameMenu;
 
 	void OnEnable() 
 	{
         MainScript.m_EndGame += this.ActivateGUI;
         this.m_EndGameMenu.active = false;
-
     }
 
     void OnDisable()
@@ -20,7 +19,9 @@ public class EndGUIDisplay : MonoBehaviour
         MainScript.m_EndGame -= this.ActivateGUI;
     }
 
-
+    /// <summary>
+    /// Active the EndMenu at the end of the Game
+    /// </summary>
     public void ActivateGUI()
     {
         this.m_EndGameMenu.active = true;
@@ -29,6 +30,7 @@ public class EndGUIDisplay : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1;
+        StopCoroutine("Appearence");
         Application.LoadLevel("PonKemon");
     }
 

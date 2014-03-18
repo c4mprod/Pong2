@@ -10,7 +10,9 @@ public class ScoringBorderScript : MonoBehaviour
 
     #region "Events Initialisation"
 
-    // The two differents events are used to know what spawner (depending on its ID) should release the ball once the MasterBall Bonus has been captured
+    /// <summary>
+    /// The two differents events are used to know what spawner (depending on its ID) should release the ball once the MasterBall Bonus has been captured
+    /// </summary>
     void OnEnable()
     {
         if (this.m_SpawnerId == 1)
@@ -47,6 +49,9 @@ public class ScoringBorderScript : MonoBehaviour
     }
     #endregion
 
+    /// <summary>
+    /// When the ball comes in, raise the score of the player and spawn the ball again
+    /// </summary>
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Ball")

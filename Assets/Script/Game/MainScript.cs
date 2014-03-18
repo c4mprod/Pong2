@@ -41,6 +41,9 @@ public class MainScript : MonoBehaviour
     public static event InputAction m_KeyPressedPlayerRightDown;
     public static event InputAction m_StopPlayer;
     
+    /// <summary>
+    /// This delegates are used to start the menu at the end of the game
+    /// </summary>
     public delegate void GUIEndGame();
     public static event GUIEndGame m_EndGame;
 
@@ -108,7 +111,9 @@ public class MainScript : MonoBehaviour
 
 
     #region "Update and fixedUpdate"
-    //Get the inputs and change booleans, methods related to the movement are called in the fixed update.
+   /// <summary>
+   /// Get the inputs and change booleans, methods related to the movement are called in the fixed update.
+   /// </summary>
     void Update()
     {
 
@@ -156,8 +161,10 @@ public class MainScript : MonoBehaviour
             if (m_GetPlayerInModel != null)
                 this.m_ChosenPlayer = m_GetPlayerInModel();
         }
-
-        //create a random Bonusball at random position every 5 seconds
+     
+        /// <summary>
+        /// create a random Bonusball at random position every 5 seconds
+        /// </summary>
         if (Application.loadedLevel == 2)
         {
             this.m_TimeSinceLastBonusBall += Time.deltaTime;
@@ -173,12 +180,14 @@ public class MainScript : MonoBehaviour
                 this.m_CurrentBonusBall.collider2D.enabled = false;
                 this._renderer = this.m_CurrentBonusBall.GetComponent<SpriteRenderer>();
                 this._renderer.color = new Color(0.1F, 0.1F, 0.1F, 0.1F);
-                this.StartCoroutine(Appearence());
+                this.StartCoroutine("Appearence");
             }
         }
     }
         
-    //call methods related to movement
+    /// <summary>
+    /// call methods related to movement
+    /// </summary>
     void FixedUpdate()
     {
         if (this.m_LeftPlayerUp)

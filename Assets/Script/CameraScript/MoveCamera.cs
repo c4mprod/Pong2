@@ -39,7 +39,9 @@ public class MoveCamera : MonoBehaviour
         }
 
     }
-
+    /// <summary>
+    ///  Return the position of the drag, in order to know where the camero is dragged to
+    /// </summary>
     public float GetDrag()
     {
         return this.m_pos.x;

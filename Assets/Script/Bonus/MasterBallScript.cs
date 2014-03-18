@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+/// <summary>
+/// This Class is used by the MasterBall Bonus to catch the ball, add 1 to the Last Player which touch the ball and spawn the ball again
+/// </summary>
 public class MasterBallScript : MonoBehaviour {
 
     public delegate void CatchMasterBall(PlayerScript _Player);

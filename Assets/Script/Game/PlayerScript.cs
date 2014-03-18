@@ -7,7 +7,9 @@ public class PlayerScript : MonoBehaviour {
     public float m_Speed = 20.0f;
     public int m_Id;
 
-
+    /// <summary>
+    /// Get The PlayerModel chosen by the Player in the second Scene
+    /// </summary>
     public delegate Sprite GetChosenSprite();
     public static event GetChosenSprite m_getSprite;
 
@@ -21,10 +23,12 @@ public class PlayerScript : MonoBehaviour {
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = m_getSprite();
         }
     }
+
+    /// <summary>
+    /// Players are differenciated by thier ID
+    /// </summary>
     void OnEnable()
     {
-        // Allow to differenciate the player
-
         if (this.m_Id == 1)
         {
             MainScript.m_KeyPressedPlayerRightUp += this.MoveUp;
@@ -59,6 +63,10 @@ public class PlayerScript : MonoBehaviour {
     #endregion
 
     #region "Events Methods"
+
+    /// <summary>
+    /// Thoses methods are used to move the player
+    /// </summary>
     void MoveDown()
     {
         this.rigidbody2D.velocity = new Vector2(0, -1 * this.m_Speed);

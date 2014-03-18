@@ -15,13 +15,14 @@ public class BallScript : MonoBehaviour {
         this.m_StartMagnitude = this.rigidbody2D.velocity.magnitude;
     }
 
+    /// <summary>
+    /// In Update, the velocity is checked and scaled if it needs to be.
+    /// </summary>
 	void Update () 
     {
         float lCurrentVelocity = this.rigidbody2D.velocity.magnitude;
         float lCorrectionVelocity;
 
-        //Checking if the current Velocity is between m_maxVelocity and m_minVelocity
-        //Scale the velocity if it needs to be
         if (lCurrentVelocity > m_maxVelocity)
         {
             lCorrectionVelocity = lCurrentVelocity / m_maxVelocity;
@@ -44,7 +45,10 @@ public class BallScript : MonoBehaviour {
         return this.m_LastPlayer;
     }
 
-    //Save the last player who touches the ball for the MasterBallScript
+    /// <summary>
+    /// Save the last player who touches the ball for the MasterBallScript
+    /// </summary>
+    /// <param name="other"> Last player which touched the ball </param>
     void OnCollisionEnter2D(Collision2D other)
     {
         this.audio.Play();
